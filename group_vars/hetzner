@@ -1,0 +1,3 @@
+---
+# file: group_vars/hetzner
+srv01: srv01.exera.ch
