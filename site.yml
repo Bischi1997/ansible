@@ -1,0 +1,4 @@
+---
+# file: site.yml
+- name: Play for creating hetzner machines
+  import_playbook: hetzner.yml

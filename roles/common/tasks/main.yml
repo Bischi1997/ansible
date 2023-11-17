@@ -1,9 +1,12 @@
 ---
-- hosts: hetzner
-  become: yes
-  tasks: 
-  - name: Installs htop web server
-    Apt: 
-      name: htop 
-      state: started 
-      update_cache: true
+- name: Installs Standard Tools
+  ansible.builtin.apt:
+    pkg:
+      - htop
+      - nano
+      - dnsutils
+      - zip
+      - unzip
+      - fail2ban
+      - rsync
+      - bash-completion
