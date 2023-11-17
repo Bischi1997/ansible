@@ -1,6 +1,6 @@
 ---
 - name: Installs Standard Tools
   ansible.builtin.apt:
-  pkg:
-  - htop
-  - nano
+    pkg:
+    - htop
+    - nano
