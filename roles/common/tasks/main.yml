@@ -4,3 +4,9 @@
     pkg:
       - htop
       - nano
+      - dnsutils
+      - zip 
+      - unzip
+      - fail2ban
+      - rsync
+      - bash-completion
