@@ -10,12 +10,8 @@ jobs:
             - name: Lint Ansible Playbook
               uses: ansible/ansible-lint@main
             - name: Run playbook
-              uses: dawidd6/action-ansible-playbook@v2
+              uses: arillso/action.playbook@master
               with:
-                  # Required, playbook filepath
                   playbook: site.yml
-                  # Optional, directory where playbooks live
-                  directory: ./
-                  # Optional, SSH private key
-                  key: ${{secrets.ANSIBLE_SSH_KEY}}
-                  inventory: ./inventory/production.yml
+                  inventory: inventory/production.yml
+                  private_key: ${{secrets.ANSIBLE_SSH_KEY}}
