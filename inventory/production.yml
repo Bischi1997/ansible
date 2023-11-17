@@ -1,5 +1,4 @@
 ---
-ungrouped:
 hetzner:
     hosts:
         srv01.exera.ch:
