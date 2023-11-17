@@ -9,6 +9,8 @@ jobs:
                   fetch-depth: 0 # needed for progressive mode to work
             - name: Lint Ansible Playbook
               uses: ansible/ansible-lint@main
+            - name: disable host key checking
+              run: export ANSIBLE_HOST_KEY_CHECKING=False
             - name: Run playbook
               uses: arillso/action.playbook@master
               with:
