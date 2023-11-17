@@ -13,11 +13,8 @@ jobs:
         uses: dawidd6/action-ansible-playbook@v2
         with:
           # Required, playbook filepath
-          playbook: roles/common/tasks/main.yml
+          playbook: site.yml
           # Optional, directory where playbooks live
           directory: ./
           # Optional, SSH private key
           key: ${{secrets.ANSIBLE_SSH_KEY}}
-          # Optional, literal inventory file contents
-          inventory: |
-            [hetzner]
