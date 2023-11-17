@@ -1,9 +1,10 @@
 ---
-- hosts: hetzner
+- name: Configure hetzner servers
+  hosts: hetzner
   become: yes
-  tasks: 
-  - name: Installs htop web server
-    Apt: 
-      name: htop 
-      state: started 
-      update_cache: true
+  tasks:
+  - name: Installs Standard Tools
+    ansible.builtin.apt:
+    pkg:
+    - htop
+    - nano
