@@ -2,6 +2,6 @@
 ungrouped:
 hetzner:
     hosts:
-      srv01.exera.ch:
-        ansible_host: 49.13.88.182
-        ansible_user: ansible
+        srv01.exera.ch:
+            ansible_host: 49.13.88.182
+            ansible_user: ansible
