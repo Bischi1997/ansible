@@ -1,5 +1,5 @@
 - name: Configure hetzner servers
   hosts: hetzner
-  become: yes
+  become: true
   roles:
     - common
