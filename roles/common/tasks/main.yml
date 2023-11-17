@@ -5,7 +5,7 @@
       - htop
       - nano
       - dnsutils
-      - zip 
+      - zip
       - unzip
       - fail2ban
       - rsync
