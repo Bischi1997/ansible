@@ -4,17 +4,17 @@ jobs:
     run_hetzner_playbook:
         runs-on: "ubuntu-latest"
         steps:
-          - uses: actions/checkout@v3
-            with:
-              fetch-depth: 0 # needed for progressive mode to work
-          - name: Lint Ansible Playbook
-            uses: ansible/ansible-lint@main
-          - name: Run playbook
-            uses: dawidd6/action-ansible-playbook@v2
-            with:
-              # Required, playbook filepath
-              playbook: site.yml
-              # Optional, directory where playbooks live
-              directory: ./
-              # Optional, SSH private key
-              key: ${{secrets.ANSIBLE_SSH_KEY}}
+            - uses: actions/checkout@v3
+              with:
+                fetch-depth: 0 # needed for progressive mode to work
+            - name: Lint Ansible Playbook
+              uses: ansible/ansible-lint@main
+            - name: Run playbook
+              uses: dawidd6/action-ansible-playbook@v2
+              with:
+                # Required, playbook filepath
+                playbook: site.yml
+                # Optional, directory where playbooks live
+                directory: ./
+                # Optional, SSH private key
+                key: ${{secrets.ANSIBLE_SSH_KEY}}
