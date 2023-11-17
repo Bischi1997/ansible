@@ -8,7 +8,7 @@ jobs:
         with:
           fetch-depth: 0 # needed for progressive mode to work
       - name: Lint Ansible Playbook
-        uses: ansible/ansible-lint-action@main
+        uses: ansible/ansible-lint@main
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
         with:
