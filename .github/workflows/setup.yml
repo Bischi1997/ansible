@@ -18,3 +18,4 @@ jobs:
                   directory: ./
                   # Optional, SSH private key
                   key: ${{secrets.ANSIBLE_SSH_KEY}}
+                  inventory: inventory/production
