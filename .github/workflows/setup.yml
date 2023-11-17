@@ -4,6 +4,11 @@ jobs:
     run_hetzner_playbook:
       runs-on: "ubuntu-latest"
       steps:
+      - uses: actions/checkout@v3
+      - name: Lint Ansible Playbook
+        uses: ansible/ansible-lint-action@master
+        with:
+          targets: ""
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
         with:
