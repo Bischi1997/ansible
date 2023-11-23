@@ -1,4 +1,12 @@
 ---
+- name: Add local ansible user 
+  user:
+    name: ansible
+    group: ansible
+    shell: /bin/bash
+    home: /home/ansible
+    create_home: yes
+    state: present
 - name: Installs Standard Tools
   ansible.builtin.apt:
     pkg:
@@ -10,3 +18,13 @@
       - fail2ban
       - rsync
       - bash-completion
+- name: Add hardened SSH config
+  copy:
+    dest: /etc/ssh/ssh_config
+    src: files/ssh_config
+    owner: root
+    group: root
+    mode: 0600
+  notify: Reload SSH
+
+
