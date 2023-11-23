@@ -1,15 +1,18 @@
 ---
-- name: Upgrade all apt packages
+- name: Update all Debian/Ubuntu packages to their latest version
   ansible.builtin.apt:
-      upgrade: dist
+      update_cache: true
+      cache_valid_time: 3600
+      name: "*"
+      state: latest
       force_apt_get: true
-- name: Check if a reboot is needed for Debian and Ubuntu boxes
+- name: Check if a reboot is needed for Debian/Ubuntu boxes
   register: reboot_required_file
   ansible.builtin.stat:
       path: /var/run/reboot-required
 - name: Reboot the Debian or Ubuntu server
   ansible.builtin.reboot:
-      msg: "Reboot initiated by Ansible due to kernel updates"
+      msg: "Reboot initiated by Ansible due to updates"
       connect_timeout: 5
       reboot_timeout: 300
       pre_reboot_delay: 0
