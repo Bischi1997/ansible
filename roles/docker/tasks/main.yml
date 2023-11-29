@@ -12,18 +12,23 @@
       - virtualenv
       - python3-setuptools
 - name: Add Docker GPG apt Key
-  apt_key:
+  ansible.builtin.apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
 - name: Add Docker Repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable"
     state: present
 - name: Update apt and install docker-ce
-  apt:
-    name: docker-ce
+  ansible.builtin.apt:
     state: latest
     update_cache: true
+    pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
 - name: Install Docker Module for Python
-  pip:
+  ansible.builtin.pip:
     name: docker
