@@ -5,6 +5,6 @@
 		}
 	],
 	"settings": {
-		"ansible.python.interpreterPath": "c:\\Program Files\\Python311\\python.exe"
+		"ansible.python.interpreterPath": "c:\\Users\\rafae\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
 	}
 }
