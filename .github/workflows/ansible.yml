@@ -9,10 +9,10 @@ jobs:
                   fetch-depth: 0 # needed for progressive mode to work
             - name: Lint Ansible Playbook
               uses: ansible/ansible-lint@main
-            - name: Run playbook
+            - name: Run production playbooks
               uses: arillso/action.playbook@master
               with:
-                  playbook: site.yml
+                  playbook: sites.yml
                   inventory: inventory/production.yml
                   private_key: ${{secrets.ANSIBLE_SSH_KEY}}
         env:

@@ -1,0 +1,4 @@
+updates_reboot_connect_timeout: 5
+updates_reboot_timeout: 600
+updates_pre_reboot_delay: 0
+updates_reboot_post_reboot_delay: 15

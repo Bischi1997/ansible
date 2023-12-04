@@ -1,0 +1,11 @@
+- name: Configure all servers
+  hosts: home
+  become: true
+  roles:
+    - common
+    - updates
+- name: Configure docker servers
+  hosts: docker01.home.bischofberger.top
+  become: true
+  roles:
+    - docker

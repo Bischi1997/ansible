@@ -1,21 +1,44 @@
 ---
+# Upgrade RHEL family OS packages
+- name: Upgrade RHEL Family OS packages
+  ansible.builtin.yum:
+    name: '*'
+    state: latest
+  when: ansible_os_family == "RedHat"
+
+# Debian Family upgrade
 - name: Update all Debian/Ubuntu packages to their latest version
   ansible.builtin.apt:
-      update_cache: true
-      cache_valid_time: 3600
-      name: "*"
-      state: latest
-      force_apt_get: true
+    update_cache: true
+    cache_valid_time: 3600
+    name: "*"
+    state: latest
+    force_apt_get: true
+  when: ansible_os_family == "Debian"
+
+# Check if reboot is required on Debian Family
 - name: Check if a reboot is needed for Debian/Ubuntu boxes
   register: reboot_required_file
   ansible.builtin.stat:
-      path: /var/run/reboot-required
-- name: Reboot the Debian or Ubuntu server
+    path: /var/run/reboot-required
+  when: ansible_os_family == "Debian"
+
+# Check if reboot is required on CentOS Family
+- name: Check if reboot_required on CentOS machine
+  ansible.builtin.command:
+    cmd: "needs-restarting -r"
+  changed_when: false
+  failed_when: reboot_required.rc != 0 and reboot_required.rc != 1
+  check_mode: false
+  register: reboot_required
+  when: ansible_os_family == "RedHat"
+
+- name: Reboot server if needed
   ansible.builtin.reboot:
-      msg: "Reboot initiated by Ansible due to updates"
-      connect_timeout: 5
-      reboot_timeout: 300
-      pre_reboot_delay: 0
-      post_reboot_delay: 30
-      test_command: uptime
-  when: reboot_required_file.stat.exists
+    msg: "Reboot initiated by Ansible due to updates"
+    connect_timeout: "{{ updates_reboot_connect_timeout }}"
+    reboot_timeout: "{{ updates_reboot_timeout }}"
+    pre_reboot_delay: "{{ updates_pre_reboot_delay }}"
+    post_reboot_delay: "{{ updates_reboot_post_reboot_delay }}"
+    test_command: uptime
+  when: ansible_os_family == "Debian" and reboot_required_file.stat.exists or ansible_os_family == "RedHat" and reboot_required.rc == 1
