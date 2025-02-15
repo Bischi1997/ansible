@@ -60,6 +60,6 @@
     owner: root
     group: root
     mode: "0600"
-    validate: ssh -t -f %s
-  notify: Reload sshd
+    validate: sshd -t -f %s
+  notify: Reload ssh
   when: ansible_os_family == "Debian"
