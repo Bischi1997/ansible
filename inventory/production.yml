@@ -12,29 +12,32 @@ home:
     children:
         mgmt:
             hosts:
-                unifi01.home.bischofberger.top:
-                    ansible_host: 10.1.0.20
+#                unifi01.home.bischofberger.top:
+#                    ansible_host: 10.1.0.20
+#                    ansible_user: ansible
+#                veeam01.home.bischofberger.top:
+#                    ansible_host: 10.1.0.55
+                ansible01.home.bischofberger.top:
+                    ansible_host: 10.1.0.75
                     ansible_user: ansible
-                veeam01.home.bischofberger.top:
-                    ansible_host: 10.1.0.55
         int:
         ext:
-            hosts:
-                dl01.home.bischofberger.top:
-                    ansible_host: 10.3.0.20
-                    ansible_user: ansible
-                plx01.home.bischofberger.top:
-                    ansible_host: 10.3.0.50
-                    ansible_user: ansible
-                ombi01.home.bischofberger.top:
-                    ansible_host: 10.3.0.60
-                    ansible_user: ansible
-                cloud01.home.bischofberger.top:
-                    ansible_host: 10.3.0.70
-                    ansible_user: ansible
-                docker01.home.bischofberger.top:
-                    ansible_host: 10.3.0.100
-                    ansible_user: ansible
+#            hosts:
+#                dl01.home.bischofberger.top:
+#                    ansible_host: 10.3.0.20
+#                    ansible_user: ansible
+#                plx01.home.bischofberger.top:
+#                    ansible_host: 10.3.0.50
+#                    ansible_user: ansible
+#                ombi01.home.bischofberger.top:
+#                    ansible_host: 10.3.0.60
+#                    ansible_user: ansible
+#                cloud01.home.bischofberger.top:
+#                    ansible_host: 10.3.0.70
+#                    ansible_user: ansible
+#                docker01.home.bischofberger.top:
+#                    ansible_host: 10.3.0.100
+#                    ansible_user: ansible
         data:
         haut:
         guest:
