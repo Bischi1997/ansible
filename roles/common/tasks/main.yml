@@ -42,10 +42,10 @@
       - bash-completion
   when: ansible_os_family == "RedHat"
 
-- name: Add hardened SSH config
+- name: Add hardened SSH config RedHat Based
   ansible.builtin.copy:
-    dest: /etc/ssh/ssh_config
-    src: files/ssh_config
+    dest: /etc/ssh/sshd_config
+    src: files/sshd_config
     owner: root
     group: root
     mode: "0600"
@@ -53,10 +53,10 @@
   notify: Reload sshd
   when: ansible_os_family == "RedHat"
 
-- name: Add hardened SSH config
+- name: Add hardened SSH config Debian Based
   ansible.builtin.copy:
-    dest: /etc/ssh/ssh_config
-    src: files/ssh_config
+    dest: /etc/ssh/sshd_config
+    src: files/sshd_config
     owner: root
     group: root
     mode: "0600"
