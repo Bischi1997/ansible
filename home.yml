@@ -1,8 +1,6 @@
 - name: Configure all servers
   hosts: home
   become: true
-  env: 
-    ANSIBLE_PASSWORD: ${{ secrets.ANSIBLE_PASSWORD }}
   roles:
     - common
     - updates
