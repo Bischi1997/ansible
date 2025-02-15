@@ -6,7 +6,7 @@
     shell: /bin/bash
     home: /home/ansible
     create_home: true
-    # password: ${{ secrets.ANSIBLE_PASSWORD }}
+    password: ${{ secrets.ANSIBLE_PASSWORD }}
     state: present
 
 - name: Installs standard tools
