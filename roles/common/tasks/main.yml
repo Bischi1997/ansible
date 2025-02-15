@@ -11,6 +11,7 @@
 - name: Installs standard tools
   ansible.builtin.apt:
     pkg:
+      - bash-completion
       - htop
       - nano
       - dnsutils
@@ -30,6 +31,7 @@
   ansible.builtin.dnf:
     pkg:
       - dnf-utils
+      - bash-completion
       - htop
       - nano
       - dnsutils
@@ -49,3 +51,15 @@
     mode: "0600"
     validate: sshd -t -f %s
   notify: Reload sshd
+  when: ansible_os_family == "RedHat"
+
+- name: Add hardened SSH config
+  ansible.builtin.copy:
+    dest: /etc/ssh/ssh_config
+    src: files/ssh_config
+    owner: root
+    group: root
+    mode: "0600"
+    validate: ssh -t -f %s
+  notify: Reload sshd
+  when: ansible_os_family == "Debian"
