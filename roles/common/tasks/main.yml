@@ -50,10 +50,13 @@
     group: root
     mode: "0600"
     validate: sshd -t -f %s
-  notify: Reload sshd
+  notify: Reload sshd RedHat
   when: ansible_os_family == "RedHat"
 
 - name: Add hardened SSH config Debian Based
+  ansible.builtin.file:
+    state: absent
+    path: /etc/ssh/sshd_config.d/50-cloud-init.conf
   ansible.builtin.copy:
     dest: /etc/ssh/sshd_config
     src: files/sshd_config
@@ -61,5 +64,5 @@
     group: root
     mode: "0600"
     validate: sshd -t -f %s
-  notify: Reload ssh
+  notify: Reload sshd Ubuntu
   when: ansible_os_family == "Debian"
