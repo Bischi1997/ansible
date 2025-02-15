@@ -1,6 +1,6 @@
 ---
 # file: site.yml
-#- name: Playbook for maintaining hetzner machines
+# - name: Playbook for maintaining hetzner machines
 #  import_playbook: hetzner.yml
 - name: Playbook for home hosted machines
   import_playbook: home.yml
