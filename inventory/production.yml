@@ -19,6 +19,7 @@ home:
 #                    ansible_host: 10.1.0.55
                 ansible01.home.bischofberger.top:
                     ansible_host: 10.1.0.75
+                    ansible_user: ansible
         int:
         ext:
 #            hosts:
