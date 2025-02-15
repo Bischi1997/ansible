@@ -1,7 +1,6 @@
 - name: Configure all servers
   hosts: home
   become: true
-  ansible_become_pass: ${{ secrets.ANSIBLE_PASSWORD }}
   roles:
     - common
     - updates
