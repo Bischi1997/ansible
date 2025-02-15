@@ -6,7 +6,6 @@
     shell: /bin/bash
     home: /home/ansible
     create_home: true
-    ansible_become_pass: ${{ secrets.ANSIBLE_PASSWORD }}
     password: ${{ secrets.ANSIBLE_PASSWORD }}
     state: present
 
