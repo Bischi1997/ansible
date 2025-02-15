@@ -1,7 +1,7 @@
 ---
 # Upgrade RHEL family OS packages
 - name: Upgrade RHEL Family OS packages
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: '*'
     state: latest
   when: ansible_os_family == "RedHat"
