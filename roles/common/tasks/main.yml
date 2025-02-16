@@ -42,7 +42,7 @@
       - bash-completion
   when: ansible_os_family == "RedHat"
 
-- name: remove unnecessary SSH config
+- name: Remove unnecessary SSH config
   ansible.builtin.file:
     state: absent
     path: /etc/ssh/sshd_config.d/50-cloud-init.conf
