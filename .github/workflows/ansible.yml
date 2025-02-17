@@ -21,3 +21,4 @@ jobs:
                   galaxy_file: requirements.yml
         env:
             ANSIBLE_HOST_KEY_CHECKING: False
+            PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
