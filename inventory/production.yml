@@ -20,6 +20,11 @@ home:
                 ansible01.home.bischofberger.top:
                     ansible_host: 10.1.0.75
                     ansible_user: ansible
+        barn:
+            hosts:
+                srv01.barn.bischofberger.top:
+                    ansible_host: 10.21.0.10
+                    ansible_user: ansible
         int:
         ext:
 #            hosts:
