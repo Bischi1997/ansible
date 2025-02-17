@@ -25,3 +25,5 @@ ChallengeResponseAuthentication no
 KerberosAuthentication no
 GSSAPIAuthentication no
 X11Forwarding no
+
+Subsystem sftp /usr/lib/openssh/sftp-server
