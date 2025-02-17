@@ -10,8 +10,8 @@
   roles:
     - role: monolithprojects.github_actions_runner
       vars:
-          github_account: Bischi1997
-          github_repo: ansible
+        github_account: Bischi1997
+        github_repo: ansible
 
 # - name: Configure docker servers
 #  hosts: docker01.home.bischofberger.top
