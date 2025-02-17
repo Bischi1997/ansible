@@ -16,5 +16,6 @@ jobs:
                   inventory: inventory/production.yml
                   private_key: ${{secrets.ANSIBLE_SSH_KEY}}
                   vault_password: ${{ secrets.VAULT_PASSWORD }}
+                  galaxy_file: requirements.yml
         env:
             ANSIBLE_HOST_KEY_CHECKING: False
