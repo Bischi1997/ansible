@@ -5,4 +5,3 @@
         vars:
             github_account: Bischi1997
             github_repo: ansible
-            access_token: "{{ lookup('env', 'PERSONAL_ACCESS_TOKEN') }}"
