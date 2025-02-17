@@ -2,7 +2,7 @@
 - name: Install GitHub Actions Runner
   hosts: ansible01.home.bischofberger.top
   user: ansible
-  become: yes
+  become: true
   vars:
     - github_account: Bischi1997
     - github_repo: ansible
