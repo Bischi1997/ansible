@@ -4,10 +4,12 @@
   roles:
     - common
     - updates
+
 - name: Configure ansible01
   hosts: ansible01.home.bischofberger.top
   become: true
   roles:
+    - docker
     - role: monolithprojects.github_actions_runner
       vars:
         github_account: Bischi1997
