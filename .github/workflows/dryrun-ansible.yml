@@ -3,9 +3,9 @@ on:
     workflow_dispatch:
     push:
         branches-ignore:
-        - main
+            - main
         paths-ignore:
-        - 'README.md'
+            - 'README.md'
 jobs:
     run_hetzner_playbook:
         runs-on: "self-hosted"
