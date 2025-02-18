@@ -9,7 +9,7 @@
     state: present
 
 - name: Set authorized key for ansible took from file
-  authorized_key:
+  ansible.posix.authorized_key:
     user: ansible
     state: present
     key: "{{ ANSIBLE_USER_PUBKEY }}"
@@ -24,7 +24,7 @@
     state: present
 
 - name: Set authorized key for bischi took from file
-  authorized_key:
+  ansible.posix.authorized_key:
     user: bischi
     state: present
     key: "{{ BISCHI_USER_PUBKEY }}"
