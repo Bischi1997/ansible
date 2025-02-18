@@ -1,0 +1,27 @@
+# code: language=yaml
+on: [workflow_dispatch, push]
+jobs:
+    run_hetzner_playbook:
+        runs-on: "self-hosted"
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0 # needed for progressive mode to work
+            - name: Lint Ansible Playbook
+              uses: ansible/ansible-lint@main
+              with:
+                  requirements_file: requirements.yml
+            - name: Run production playbooks
+              uses: arillso/action.playbook@master
+              with:
+                  check: true
+                  playbook: sites.yml
+                  inventory: inventory/production.yml
+                  private_key: ${{secrets.ANSIBLE_SSH_KEY}}
+                  vault_password: ${{ secrets.VAULT_PASSWORD }}
+                  galaxy_file: requirements.yml
+        env:
+            ANSIBLE_HOST_KEY_CHECKING: False
+            PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+            ANSIBLE_USER_PUBKEY: ${{ secrets.ANSIBLE_USER_PUBKEY }}
+            BISCHI_USER_PUBKEY: ${{ secrets.BISCHI_USER_PUBKEY }}
