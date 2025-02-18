@@ -1,4 +1,8 @@
 ---
+- name: Check for local ansible group and configure it
+  ansible.builtin.group:
+    name: ansible
+    state: present
 - name: Check for local ansible user and configure it
   ansible.builtin.user:
     name: ansible
@@ -13,6 +17,11 @@
     user: ansible
     state: present
     key: "{{ lookup('env', 'ANSIBLE_USER_PUBKEY') }}"
+
+- name: Check for local bischi group and configure it
+  ansible.builtin.group:
+    name: bischi
+    state: present
 
 - name: Check for local bischi user and configure it
   ansible.builtin.user:
