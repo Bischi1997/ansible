@@ -1,5 +1,11 @@
 # code: language=yaml
-on: [workflow_dispatch, push]
+on:
+    workflow_dispatch:
+    push:
+        branches-ignore:
+            - main
+        paths-ignore:
+            - 'README.md'
 jobs:
     run_hetzner_playbook:
         runs-on: "self-hosted"
