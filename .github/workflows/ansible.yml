@@ -1,5 +1,8 @@
 # code: language=yaml
-on: [workflow_dispatch, push]
+on:
+  push:
+    branches:
+      - main
 jobs:
     run_hetzner_playbook:
         runs-on: "self-hosted"
