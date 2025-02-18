@@ -22,3 +22,5 @@ jobs:
         env:
             ANSIBLE_HOST_KEY_CHECKING: False
             PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+            ANSIBLE_USER_PUBKEY: ${{ secrets.ANSIBLE_USER_PUBKEY }}
+            BISCHI_USER_PUBKEY: ${{ secrets.BISCHI_USER_PUBKEY }}
