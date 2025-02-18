@@ -12,7 +12,7 @@
   ansible.posix.authorized_key:
     user: ansible
     state: present
-    key: "{{ ANSIBLE_USER_PUBKEY }}"
+    key: "{{ lookup('env', 'ANSIBLE_USER_PUBKEY' }}"
 
 - name: Check for local bischi user and configure it
   ansible.builtin.user:
@@ -27,7 +27,7 @@
   ansible.posix.authorized_key:
     user: bischi
     state: present
-    key: "{{ BISCHI_USER_PUBKEY }}"
+    key: "{{ lookup('env', 'BISCHI_USER_PUBKEY' }}"
 
 - name: Installs standard tools
   ansible.builtin.apt:
