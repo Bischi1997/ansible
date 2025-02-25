@@ -12,9 +12,9 @@ home:
     children:
         mgmt:
             hosts:
-#                unifi01.home.bischofberger.top:
-#                    ansible_host: 10.1.0.20
-#                    ansible_user: ansible
+                unifi01.home.bischofberger.top:
+                    ansible_host: 10.1.0.20
+                    ansible_user: ansible
 #                veeam01.home.bischofberger.top:
 #                    ansible_host: 10.1.0.55
                 ansible01.home.bischofberger.top:
@@ -31,12 +31,12 @@ home:
                 dl01.home.bischofberger.top:
                     ansible_host: 10.3.0.21
                     ansible_user: ansible
-#                plx01.home.bischofberger.top:
-#                    ansible_host: 10.3.0.50
-#                    ansible_user: ansible
-#                ombi01.home.bischofberger.top:
-#                    ansible_host: 10.3.0.60
-#                    ansible_user: ansible
+                plx01.home.bischofberger.top:
+                    ansible_host: 10.3.0.50
+                    ansible_user: ansible
+                ombi01.home.bischofberger.top:
+                    ansible_host: 10.3.0.60
+                    ansible_user: ansible
 #                cloud01.home.bischofberger.top:
 #                    ansible_host: 10.3.0.70
 #                    ansible_user: ansible
