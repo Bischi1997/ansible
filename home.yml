@@ -9,15 +9,14 @@
   hosts: ansible01.home.bischofberger.top
   become: true
   roles:
-    - docker
     - role: monolithprojects.github_actions_runner
       vars:
         github_account: Bischi1997
         github_repo: ansible
         access_token: "{{ lookup('env', 'PERSONAL_ACCESS_TOKEN') }}"
 
-- name: Configure docker servers
-  hosts: docker01.home.bischofberger.top
+- name: Configure servers with docker install
+  hosts: dockerhosts
   become: true
   roles:
     - docker
