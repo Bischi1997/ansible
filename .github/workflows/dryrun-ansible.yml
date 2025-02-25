@@ -20,7 +20,7 @@ jobs:
             - name: Run production playbooks
               uses: arillso/action.playbook@master
               with:
-                  verbose: 3
+                  verbose: 2
                   check: true
                   playbook: sites.yml
                   inventory: inventory/production.yml
