@@ -20,3 +20,11 @@
   become: true
   roles:
     - docker
+
+- name: Configure servers with nextcloud install
+  hosts: nextcloudhosts
+  become: true
+  roles:
+    - role: nextcloud.admin
+      vars:
+      
