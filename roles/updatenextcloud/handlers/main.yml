@@ -1,18 +1,18 @@
 ---
-- name: add missing indices
-  command: '{{ updatenextcloud_web_root }}/occ db:add-missing-indices'
+- name: Add missing indices
+  ansible.builtin.command: '{{ updatenextcloud_web_root }}/occ db:add-missing-indices'
   become: true
   become_user: "{{ updatenextcloud_service_user }}"
   changed_when: false
 
-- name: convert columns to big int
-  command: '{{ updatenextcloud_web_root }}/occ db:convert-filecache-bigint --no-interaction'
+- name: Convert columns to big int
+  ansible.builtin.command: '{{ updatenextcloud_web_root }}/occ db:convert-filecache-bigint --no-interaction'
   become: true
   become_user: "{{ updatenextcloud_service_user }}"
   changed_when: false
 
-- name: add mimetypes to database
-  command: '{{ updatenextcloud_web_root }}/occ maintenance:mimetype:update-db'
+- name: Add mimetypes to database
+  ansible.builtin.command: '{{ updatenextcloud_web_root }}/occ maintenance:mimetype:update-db'
   become: true
   become_user: "{{ updatenextcloud_service_user }}"
   changed_when: false
