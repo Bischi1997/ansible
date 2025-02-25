@@ -25,6 +25,4 @@
   hosts: nextcloudhosts
   become: true
   roles:
-    - role: nextcloud.admin
-      vars:
-      
+    - updatenextcloud
