@@ -3,6 +3,7 @@
   ansible.builtin.group:
     name: ansible
     state: present
+
 - name: Check for local ansible user and configure it
   ansible.builtin.user:
     name: ansible
@@ -17,6 +18,30 @@
     user: ansible
     state: present
     key: "{{ lookup('env', 'ANSIBLE_USER_PUBKEY') }}"
+
+- name: "Ensure the ansible_user User is in the wheel group"
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    groups: wheel
+    append: true
+  when: ansible_os_family == "RedHat"
+
+- name: Ensure "/etc/sudoers.d/" Directory Exists
+  ansible.builtin.file:
+    path: /etc/sudoers.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0750"
+
+- name: "Allow the ansible_user User to Use sudo Without Password"
+  ansible.builtin.copy:
+    dest: "/etc/sudoers.d/{{ ansible_user }}"
+    content: "# Allow passwordless sudo for ansible account\n{{ ansible_user }} ALL=(ALL) NOPASSWD:ALL\n"
+    owner: root
+    group: root
+    mode: "0440"
+    validate: "/usr/sbin/visudo --check --file=%s"
 
 - name: Check for local bischi group and configure it
   ansible.builtin.group:
