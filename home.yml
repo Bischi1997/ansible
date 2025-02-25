@@ -26,7 +26,3 @@
   become: true
   roles:
     - updatenextcloud
-    - role: nextcloud.admin
-      nextcloud.admin.run_occ: 
-        nextcloud_path: /var/www/nextcloud
-        command: occ app:update --all

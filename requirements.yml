@@ -6,3 +6,4 @@ roles:
 collections:
  - name: ansible.posix
  - name: nextcloud.admin
+   version: 2.1.0
