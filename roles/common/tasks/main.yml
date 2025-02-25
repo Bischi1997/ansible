@@ -19,14 +19,14 @@
     state: present
     key: "{{ lookup('env', 'ANSIBLE_USER_PUBKEY') }}"
 
-- name: "Ensure the ansible_user User is in the wheel group"
+- name: "Ensure the ansible_user User is in the wheel group on RedHat"
   ansible.builtin.user:
     name: "{{ ansible_user }}"
     groups: wheel
     append: true
   when: ansible_os_family == "RedHat"
 
-- name: Ensure "/etc/sudoers.d/" Directory Exists
+- name: Ensure "/etc/sudoers.d/" directory exists
   ansible.builtin.file:
     path: /etc/sudoers.d
     state: directory
@@ -34,7 +34,7 @@
     group: root
     mode: "0750"
 
-- name: "Allow the ansible_user User to Use sudo Without Password"
+- name: "Allow the ansible_user user to use sudo without password"
   ansible.builtin.copy:
     dest: "/etc/sudoers.d/{{ ansible_user }}"
     content: "# Allow passwordless sudo for ansible account\n{{ ansible_user }} ALL=(ALL) NOPASSWD:ALL\n"
@@ -47,7 +47,7 @@
   ansible.builtin.lineinfile:
     dest: /etc/sudoers
     regexp: '^#\s*includedir.*$'
-    line: 'includedir /etc/sudoers.d'
+    line: '@includedir /etc/sudoers.d'
     validate: "/usr/sbin/visudo --check --file=%s"
 
 - name: Check for local bischi group and configure it
