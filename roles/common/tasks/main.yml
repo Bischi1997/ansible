@@ -3,6 +3,7 @@
   ansible.builtin.group:
     name: ansible
     state: present
+
 - name: Check for local ansible user and configure it
   ansible.builtin.user:
     name: ansible
@@ -17,12 +18,6 @@
     user: ansible
     state: present
     key: "{{ lookup('env', 'ANSIBLE_USER_PUBKEY') }}"
-
-- name: "Ensure the ansible_user User is in the wheel group"
-  ansible.builtin.user:
-    name: "{{ ansible_user }}"
-    groups: wheel
-    append: true
 
 - name: Ensure "/etc/sudoers.d/" Directory Exists
   ansible.builtin.file:
