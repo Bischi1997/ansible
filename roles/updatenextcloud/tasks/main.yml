@@ -5,21 +5,21 @@
   become: true
   become_user: "{{ nextcloud_service_user }}"
   register: nextcloud_installed_version
-  changed_when: no
+  changed_when: false
 
 - name: Run nextcloud's updater.phar in non-interactive way
   ansible.builtin.command: 'php {{ nextcloud_web_root }}/updater/updater.phar --no-interaction'
   become: true
   become_user: "{{ nextcloud_service_user }}"
   register: nextcloud_update_result
-  changed_when: no  # unsure if upgrade has been done -> inform later
+  changed_when: false  # unsure if upgrade has been done -> inform later
 
 - name: Get current nextcloud version, after running updater.phar
   ansible.builtin.command: '{{ nextcloud_web_root }}/occ -V'
   become: true
   become_user: "{{ nextcloud_service_user }}"
   register: nextcloud_upgraded_version
-  changed_when: no
+  changed_when: false
 
 - name: Finish nextcloud upgrade by running occ upgrade
   ansible.builtin.command: '{{ nextcloud_web_root }}/occ upgrade'
@@ -32,7 +32,7 @@
   become: true
   become_user: "{{ nextcloud_service_user }}"
   register: nextcloud_upgraded_version
-  changed_when: no
+  changed_when: false
 
 - name: Inform about upgrade
   ansible.builtin.debug:
