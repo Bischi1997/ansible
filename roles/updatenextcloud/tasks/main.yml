@@ -1,0 +1,6 @@
+---
+# update nextcloud service
+- name: Execute updater.phar
+  ansible.builtin.shell:
+    chdir: /var/www/html/nextcloud/
+    cmd: sudo -u apache php updater/updater.phar --no-interaction
