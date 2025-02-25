@@ -13,7 +13,7 @@
     create_home: true
     state: present
 
-- name: Set authorized key for ansible took from file
+- name: Set authorized key for ansible
   ansible.posix.authorized_key:
     user: ansible
     state: present
@@ -64,11 +64,17 @@
     create_home: true
     state: present
 
-- name: Set authorized key for bischi took from file
+- name: Set authorized key for bischi
   ansible.posix.authorized_key:
     user: bischi
     state: present
     key: "{{ lookup('env', 'BISCHI_USER_PUBKEY') }}"
+
+- name: Set authorized key for root
+  ansible.posix.authorized_key:
+    user: root
+    state: present
+    key: "{{ lookup('env', 'ROOT_USER_PUBKEY') }}"
 
 - name: Installs standard tools
   ansible.builtin.apt:
