@@ -43,6 +43,13 @@
     mode: "0440"
     validate: "/usr/sbin/visudo --check --file=%s"
 
+- name: Uncomment includedir line in /etc/sudoers
+  ansible.builtin.lineinfile:
+    dest: /etc/sudoers
+    regexp: '^#\s*includedir.*$'
+    line: 'includedir /etc/sudoers.d'
+    validate: "/usr/sbin/visudo --check --file=%s"
+
 - name: Check for local bischi group and configure it
   ansible.builtin.group:
     name: bischi
