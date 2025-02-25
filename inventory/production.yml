@@ -58,4 +58,3 @@ services:
             hosts:
                 docker01.home.bischofberger.top:
                 kasm01.home.bischofberger.top:
-        
