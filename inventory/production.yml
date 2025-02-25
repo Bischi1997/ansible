@@ -40,8 +40,14 @@ home:
                 cloud01.home.bischofberger.top:
                     ansible_host: 10.3.0.70
                     ansible_user: ansible
+                factorio01.home.bischofberger.top:
+                    ansible_host: 10.3.0.80
+                    ansible_user: ansible
                 docker01.home.bischofberger.top:
                     ansible_host: 10.3.0.100
+                    ansible_user: ansible
+                kasm01.home.bischofberger.top:
+                    ansible_host: 10.3.0.120
                     ansible_user: ansible
         data:
         haut:
