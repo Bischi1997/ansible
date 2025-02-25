@@ -26,7 +26,7 @@
     append: true
   when: ansible_os_family == "RedHat"
 
-- name: uncomment includedir line in /etc/sudoers
+- name: Uncomment includedir line in /etc/sudoers
   ansible.builtin.lineinfile:
       dest: /etc/sudoers
       regexp: '^#\s*includedir.*$'
