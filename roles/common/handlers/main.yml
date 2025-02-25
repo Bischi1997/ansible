@@ -2,7 +2,7 @@
 - name: Reload sshd RedHat
   ansible.builtin.service:
     name: sshd
-    state: reloaded
+    state: restarted
 - name: Reload sshd Ubuntu
   ansible.builtin.service:
     name: ssh
