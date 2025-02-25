@@ -27,10 +27,10 @@ home:
                     ansible_user: ansible
         int:
         ext:
-#            hosts:
-#                dl01.home.bischofberger.top:
-#                    ansible_host: 10.3.0.20
-#                    ansible_user: ansible
+            hosts:
+                dl01.home.bischofberger.top:
+                    ansible_host: 10.3.0.20
+                    ansible_user: ansible
 #                plx01.home.bischofberger.top:
 #                    ansible_host: 10.3.0.50
 #                    ansible_user: ansible
