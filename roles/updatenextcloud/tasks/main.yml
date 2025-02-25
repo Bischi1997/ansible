@@ -41,9 +41,9 @@
   changed_when: true
   when: nextcloud_installed_version.stdout != nextcloud_upgraded_version.stdout
   notify:
-    - add missing indices
-    - convert columns to big int
-    - add mimetypes to database
+    - Add missing indices
+    - Convert columns to big int
+    - Add mimetypes to database
 
 - name: Update Nextcloud apps
   nextcloud.admin.run_occ:
