@@ -25,6 +25,13 @@
   hosts: nextcloudhosts
   become: true
   roles:
+    - name: Update Nextcloud 
+      tasks:
+      - name: Execute updater.phar
+        ansible.builtin.shell:
+          chdir: /var/www/html/nextcloud/
+          cmd: sudo -u apache php updater/updater.phar --no-interaction
     - role: nextcloud.admin
-      vars:
-      
+      nextcloud.admin.run_occ: 
+        nextcloud_path: /var/www/nextcloud
+        command: occ app:update --all
