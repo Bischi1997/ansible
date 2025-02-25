@@ -52,3 +52,10 @@ home:
         data:
         haut:
         guest:
+services:
+    children:
+        dockerhosts:
+            hosts:
+                docker01.home.bischofberger.top:
+                kasm01.home.bischofberger.top:
+        
