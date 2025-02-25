@@ -48,4 +48,4 @@
 - name: Update Nextcloud apps
   nextcloud.admin.run_occ:
     nextcloud_path: "{{ updatenextcloud_web_root }}"
-    command: occ app:update --all
+    command: app:update --all
