@@ -16,8 +16,8 @@
         github_repo: ansible
         access_token: "{{ lookup('env', 'PERSONAL_ACCESS_TOKEN') }}"
 
-# - name: Configure docker servers
-#  hosts: docker01.home.bischofberger.top
-#  become: true
-#  roles:
-#    - docker
+- name: Configure docker servers
+  hosts: docker01.home.bischofberger.top
+  become: true
+  roles:
+    - docker
