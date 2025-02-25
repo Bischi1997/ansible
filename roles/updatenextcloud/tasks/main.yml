@@ -1,43 +1,43 @@
 ---
 # update nextcloud service
-- name: get current nextcloud version, before upgrade
-  command: '{{ nextcloud_web_root }}/occ -V'
-  become: yes
+- name: Get current nextcloud version, before upgrade
+  ansible.builtin.command: '{{ nextcloud_web_root }}/occ -V'
+  become: true
   become_user: "{{ nextcloud_service_user }}"
   register: nextcloud_installed_version
   changed_when: no
 
-- name: run nextcloud's updater.phar in non-interactive way
-  command: 'php {{ nextcloud_web_root }}/updater/updater.phar --no-interaction'
-  become: yes
+- name: Run nextcloud's updater.phar in non-interactive way
+  ansible.builtin.command: 'php {{ nextcloud_web_root }}/updater/updater.phar --no-interaction'
+  become: true
   become_user: "{{ nextcloud_service_user }}"
   register: nextcloud_update_result
   changed_when: no  # unsure if upgrade has been done -> inform later
 
-- name: get current nextcloud version, after running updater.phar
-  command: '{{ nextcloud_web_root }}/occ -V'
-  become: yes
+- name: Get current nextcloud version, after running updater.phar
+  ansible.builtin.command: '{{ nextcloud_web_root }}/occ -V'
+  become: true
   become_user: "{{ nextcloud_service_user }}"
   register: nextcloud_upgraded_version
   changed_when: no
 
-- name: finish nextcloud upgrade by running occ upgrade
-  command: '{{ nextcloud_web_root }}/occ upgrade'
-  become: yes
+- name: Finish nextcloud upgrade by running occ upgrade
+  ansible.builtin.command: '{{ nextcloud_web_root }}/occ upgrade'
+  become: true
   become_user: "{{ nextcloud_service_user }}"
   when: nextcloud_installed_version.stdout != nextcloud_upgraded_version.stdout
 
-- name: get current nextcloud version, after occ upgrade
-  command: '{{ nextcloud_web_root }}/occ -V'
-  become: yes
+- name: Get current nextcloud version, after occ upgrade
+  ansible.builtin.command: '{{ nextcloud_web_root }}/occ -V'
+  become: true
   become_user: "{{ nextcloud_service_user }}"
   register: nextcloud_upgraded_version
   changed_when: no
 
-- name: inform about upgrade
-  debug:
-    msg: 'nextcloud version has been upgraded from {{ nextcloud_installed_version.stdout  }} to {{ nextcloud_upgraded_version.stdout }}'
-  changed_when: yes
+- name: Inform about upgrade
+  ansible.builtin.debug:
+    msg: 'nextcloud version has been upgraded from {{ nextcloud_installed_version.stdout }} to {{ nextcloud_upgraded_version.stdout }}'
+  changed_when: true
   when: nextcloud_installed_version.stdout != nextcloud_upgraded_version.stdout
   notify:
     - add missing indices
