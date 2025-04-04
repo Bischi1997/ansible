@@ -62,3 +62,14 @@ services:
         nextcloudhosts:
             hosts:
                 cloud01.home.bischofberger.top:
+        updatehosts:
+            hosts:
+                dl01.home.bischofberger.top:
+                plx01.home.bischofberger.top:
+                ombi01.home.bischofberger.top:
+                cloud01.home.bischofberger.top:
+                factorio01.home.bischofberger.top:
+                docker01.home.bischofberger.top:
+                kasm01.home.bischofberger.top:
+                srv01.barn.bischofberger.top:
+                unifi01.home.bischofberger.top:
