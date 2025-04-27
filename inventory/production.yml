@@ -20,6 +20,7 @@ home:
                 ansible01.home.bischofberger.top:
                     ansible_host: 10.1.0.75
                     ansible_user: ansible
+                    remote_tmp: /tmp/.ansible
         barn:
             hosts:
                 srv01.barn.bischofberger.top:
