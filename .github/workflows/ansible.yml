@@ -16,7 +16,7 @@ jobs:
               with:
                   fetch-depth: 0 # needed for progressive mode to work
             - name: Run production playbooks
-              uses: arillso/action.playbook@master
+              uses: arillso/action.playbook@0.1.0
               with:
                   playbook: sites.yml
                   inventory: inventory/production.yml
