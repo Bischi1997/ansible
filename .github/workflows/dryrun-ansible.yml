@@ -18,7 +18,7 @@ jobs:
               with:
                   requirements_file: requirements.yml
             - name: Run production playbooks
-              uses: arillso/action.playbook@0.1.0
+              uses: arillso/action.playbook@0.0.8
               with:
                   verbose: 2
                   check: true
