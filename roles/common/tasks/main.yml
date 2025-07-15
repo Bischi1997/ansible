@@ -87,6 +87,7 @@
       - unzip
       - fail2ban
       - rsync
+      - tmux
   when: ansible_os_family == "Debian"
 
 - name: Enable EPEL Repository on CentOS machines
@@ -106,6 +107,7 @@
       - unzip
       - fail2ban
       - rsync
+      - tmux
   when: ansible_os_family == "RedHat"
 
 - name: Remove unnecessary SSH config
