@@ -4,21 +4,21 @@
   ansible.builtin.command: '{{ updatenextcloud_web_root }}/occ -V'
   become: true
   become_user: "{{ updatenextcloud_service_user }}"
-  register: nextcloud_installed_version
+  register: updatenextcloud_installed_version
   changed_when: false
 
 - name: Run nextcloud's updater.phar in non-interactive way
   ansible.builtin.command: 'php {{ updatenextcloud_web_root }}/updater/updater.phar --no-interaction'
   become: true
   become_user: "{{ updatenextcloud_service_user }}"
-  register: nextcloud_update_result
+  register: updatenextcloud_update_result
   changed_when: false  # unsure if upgrade has been done -> inform later
 
 - name: Get current nextcloud version, after running updater.phar
   ansible.builtin.command: '{{ updatenextcloud_web_root }}/occ -V'
   become: true
   become_user: "{{ updatenextcloud_service_user }}"
-  register: nextcloud_upgraded_version
+  register: updatenextcloud_upgraded_version
   changed_when: false
 
 - name: Finish nextcloud upgrade by running occ upgrade
@@ -26,20 +26,20 @@
   become: true
   become_user: "{{ updatenextcloud_service_user }}"
   changed_when: false
-  when: nextcloud_installed_version.stdout != nextcloud_upgraded_version.stdout
+  when: updatenextcloud_installed_version.stdout != updatenextcloud_upgraded_version.stdout
 
 - name: Get current nextcloud version, after occ upgrade
   ansible.builtin.command: '{{ updatenextcloud_web_root }}/occ -V'
   become: true
   become_user: "{{ updatenextcloud_service_user }}"
-  register: nextcloud_upgraded_version
+  register: updatenextcloud_upgraded_version
   changed_when: false
 
 - name: Inform about upgrade
   ansible.builtin.debug:
     msg: 'nextcloud version has been upgraded from {{ nextcloud_installed_version.stdout }} to {{ nextcloud_upgraded_version.stdout }}'
   changed_when: true
-  when: nextcloud_installed_version.stdout != nextcloud_upgraded_version.stdout
+  when: updatenextcloud_installed_version.stdout != updatenextcloud_upgraded_version.stdout
   notify:
     - Add missing indices
     - Convert columns to big int

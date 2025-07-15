@@ -18,19 +18,19 @@
 
 # Check if reboot is required on Debian Family
 - name: Check if a reboot is needed for Debian/Ubuntu boxes
-  register: reboot_required_file
+  register: updates_reboot_required_file
   ansible.builtin.stat:
     path: /var/run/reboot-required
   when: ansible_os_family == "Debian"
 
 # Check if reboot is required on CentOS Family
-- name: Check if reboot_required on CentOS machine
+- name: Check if updates_reboot_required on CentOS machine
   ansible.builtin.command:
     cmd: "needs-restarting -r"
   changed_when: false
-  failed_when: reboot_required.rc != 0 and reboot_required.rc != 1
+  failed_when: updates_reboot_required.rc != 0 and updates_reboot_required.rc != 1
   check_mode: false
-  register: reboot_required
+  register: updates_reboot_required
   when: ansible_os_family == "RedHat"
 
 - name: Reboot server if needed
@@ -41,4 +41,4 @@
     pre_reboot_delay: "{{ updates_pre_reboot_delay }}"
     post_reboot_delay: "{{ updates_reboot_post_reboot_delay }}"
     test_command: uptime
-  when: ansible_os_family == "Debian" and reboot_required_file.stat.exists or ansible_os_family == "RedHat" and reboot_required.rc == 1
+  when: ansible_os_family == "Debian" and updates_reboot_required_file.stat.exists or ansible_os_family == "RedHat" and updates_reboot_required.rc == 1
