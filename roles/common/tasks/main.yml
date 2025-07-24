@@ -124,7 +124,9 @@
     mode: "0600"
     validate: sshd -t -f %s
   notify: Reload sshd RedHat
-  when: ansible_os_family == "RedHat"
+  when:
+    - ansible_os_family == "RedHat"
+    - inventory_hostname not in groups['hetzner']
 
 - name: Add hardened SSH config Debian Based
   ansible.builtin.copy:
@@ -135,4 +137,6 @@
     mode: "0600"
     validate: sshd -t -f %s
   notify: Reload sshd Ubuntu
-  when: ansible_os_family == "Debian"
+  when:
+    - ansible_os_family == "Debian" 
+    - inventory_hostname not in groups['hetzner']
