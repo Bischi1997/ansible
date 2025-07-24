@@ -76,7 +76,6 @@
     state: present
     key: "{{ lookup('env', 'ROOT_USER_PUBKEY') }}"
   when: inventory_hostname not in groups['hetzner']
-    
 
 - name: Installs standard tools
   ansible.builtin.apt:
