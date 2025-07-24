@@ -138,5 +138,5 @@
     validate: sshd -t -f %s
   notify: Reload sshd Ubuntu
   when:
-    - ansible_os_family == "Debian" 
+    - ansible_os_family == "Debian"
     - inventory_hostname not in groups['hetzner']
