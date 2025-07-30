@@ -3,7 +3,7 @@
   ansible.builtin.group:
     name: "{{ item }}"
     state: present
-  loop: "{{ groups }}"
+  loop: "{{ local_groups }}"
 
 - name: Check for users and configure them
   ansible.builtin.user:
@@ -13,7 +13,7 @@
     home: "/home/{{ item }}"
     create_home: true
     state: present
-  loop: "{{ users }}"
+  loop: "{{ local_users }}"
 
 - name: Set authorized key for ansible
   ansible.posix.authorized_key:
