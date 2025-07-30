@@ -1,2 +1,5 @@
 ---
 # file: group_vars/all
+users:
+  - ansible
+  - bischi
