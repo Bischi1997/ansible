@@ -3,3 +3,7 @@
 users:
   - ansible
   - bischi
+
+groups:
+  - ansible
+  - bischi
