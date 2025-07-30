@@ -1,17 +1,19 @@
 ---
 - name: Check for local ansible group and configure it
   ansible.builtin.group:
-    name: ansible
+    name: "{{ item }}"
     state: present
+  loop: "{{ groups }}"
 
-- name: Check for local ansible user and configure it
+- name: Check for users and configure them
   ansible.builtin.user:
-    name: ansible
-    group: ansible
-    shell: /bin/bash
-    home: /home/ansible
+    name: "{{ item }}"
+    group: "{{ item }}"
+    shell: /bin/zsh
+    home: "/home/{{ item }}"
     create_home: true
     state: present
+  loop: "{{ users }}"
 
 - name: Set authorized key for ansible
   ansible.posix.authorized_key:
@@ -49,20 +51,6 @@
     regexp: '^#\s*includedir.*$'
     line: '@includedir /etc/sudoers.d'
     validate: "/usr/sbin/visudo --check --file=%s"
-
-- name: Check for local bischi group and configure it
-  ansible.builtin.group:
-    name: bischi
-    state: present
-
-- name: Check for local bischi user and configure it
-  ansible.builtin.user:
-    name: bischi
-    group: bischi
-    shell: /bin/bash
-    home: /home/bischi
-    create_home: true
-    state: present
 
 - name: Set authorized key for bischi
   ansible.posix.authorized_key:
