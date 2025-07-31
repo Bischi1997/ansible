@@ -61,6 +61,12 @@
   loop_control:
     loop_var: user
 
+- name: Remove install script
+  ansible.builtin.file:
+    path: "/home/{{ item }}/install.sh"
+    state: absent
+  loop: "{{ local_users }}"
+
 - name: Install PowerLevel10K
   ansible.builtin.git:
     repo: https://github.com/romkatv/powerlevel10k.git
@@ -119,6 +125,34 @@
   loop_control:
     loop_var: user
 
+
+- name: Add configuration file for PowerLevel10K to the users
+  ansible.builtin.copy:
+    dest: "/home/{{ item }}/.p10k.zsh"
+    src: files/.p10k.zsh
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: "0755"
+  loop: "{{ local_users }}"
+
+- name: Add Powerlevel10k config and instant prompt to .zshrc
+  ansible.builtin.blockinfile:
+    path: "/home/{{ item }}/.zshrc"
+    create: true
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: '0644'
+    block: |
+      # Enable Powerlevel10k instant prompt. Should be near the top of ~/.zshrc.
+      if [[ -r ~/.cache/p10k-instant-prompt-${(%):-%n}.zsh ]]; then
+        source ~/.cache/p10k-instant-prompt-${(%):-%n}.zsh
+      fi
+
+      # Load Powerlevel10k theme config if available
+      [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+    marker: "# {mark} ANSIBLE MANAGED BLOCK: Powerlevel10k"
+    insertbefore: BOF
+  loop: "{{ local_users }}"
 
 - name: Install zsh-autosuggestions plugin
   ansible.builtin.git:
