@@ -104,6 +104,22 @@
   loop_control:
     loop_var: user
 
+- name: Set Zsh theme to powerlevel10k
+  ansible.builtin.lineinfile:
+    path: "/home/{{ user }}/.zshrc"
+    regexp: '^ZSH_THEME='
+    line: 'ZSH_THEME="powerlevel10k/powerlevel10k"'
+    create: yes
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: '0644'
+  become: true
+  become_user: "{{ user }}"
+  loop: "{{ local_users }}"
+  loop_control:
+    loop_var: user
+
+
 - name: Install zsh-autosuggestions plugin
   ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-autosuggestions
