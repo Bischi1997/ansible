@@ -44,6 +44,12 @@
   become_user: "{{ item }}"
   loop: "{{ local_users }}"
 
+- name: Remove install script
+  ansible.builtin.file:
+    path: "/home/{{ item }}/install.sh"
+    state: absent
+  loop: "{{ local_users }}"
+
 - name: Install PowerLevel10K
   ansible.builtin.git:
     repo: https://github.com/romkatv/powerlevel10k.git
