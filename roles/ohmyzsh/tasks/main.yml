@@ -28,6 +28,7 @@
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
     dest: "/home/{{ item }}/install.sh"
+    mode: '0755'
     owner: "{{ item }}"
     group: "{{ item }}"
   loop: "{{ local_users }}"
@@ -38,9 +39,9 @@
     yes | /home/{{ item }}/install.sh
   args:
     executable: /bin/bash
+    creates: "/home/{{ item }}/.oh-my-zsh"
   become: true
   become_user: "{{ item }}"
-  when: not ohmyzsh_status.results[loop.index0].stat.exists
   loop: "{{ local_users }}"
 
 - name: Install PowerLevel10K
