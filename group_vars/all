@@ -1,2 +1,9 @@
 ---
 # file: group_vars/all
+local_users:
+  - ansible
+  - bischi
+
+local_groups:
+  - ansible
+  - bischi
