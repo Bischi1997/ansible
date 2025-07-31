@@ -37,19 +37,23 @@
 
 - name: Check for local ansible group and configure it
   ansible.builtin.group:
-    name: "{{ item }}"
+    name: "{{ user }}"
     state: present
   loop: "{{ local_groups }}"
+  loop_control:
+    loop_var: user
 
 - name: Check for users and configure them
   ansible.builtin.user:
-    name: "{{ item }}"
-    group: "{{ item }}"
+    name: "{{ user }}"
+    group: "{{ user }}"
     shell: /bin/bash
-    home: "/home/{{ item }}"
+    home: "/home/{{ user }}"
     create_home: true
     state: present
   loop: "{{ local_users }}"
+  loop_control:
+    loop_var: user
 
 - name: Set authorized key for ansible
   ansible.posix.authorized_key:

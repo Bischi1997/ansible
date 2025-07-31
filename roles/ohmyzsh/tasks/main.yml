@@ -115,7 +115,7 @@
     path: "/home/{{ user }}/.zshrc"
     regexp: '^ZSH_THEME='
     line: 'ZSH_THEME="powerlevel10k/powerlevel10k"'
-    create: yes
+    create: true
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: '0644'
