@@ -18,19 +18,11 @@
     shell: /bin/zsh
   loop: "{{ local_users }}"
 
-- name: Download ohmyzsh
-  ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-    dest: "/home/{{ item }}/install.sh"
-    mode: '0755'
-  loop: "{{ local_users }}"
-
 - name: Install ohmyzsh
   ansible.builtin.script:
-    cmd: roles/ohmyzsh/files/install.sh
+    cmd: yes 'Y' | roles/ohmyzsh/files/install.sh
   become: true
   become_user: "{{ item }}"
-  register: ohmyzsh_output
   loop: "{{ local_users }}"
 
 - name: Install PowerLevel10K
