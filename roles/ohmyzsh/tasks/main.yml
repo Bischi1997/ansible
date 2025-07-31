@@ -35,6 +35,7 @@
     executable: /bin/bash
   become: true
   become_user: "{{ item }}"
+  changed_when: "'/home/{{ item }}/.oh-my-zsh' not in ansible_facts.files"
   loop: "{{ local_users }}"
 
 - name: Install PowerLevel10K
