@@ -36,7 +36,7 @@
     dest: "/home/{{ item }}/.oh-my-zsh/custom/themes/powerlevel10k"
     depth: 1
     version: master
-    update: yes
+    update: true
   loop: "{{ local_users }}"
 
 - name: Install zsh-autosuggestions plugin
@@ -45,7 +45,7 @@
     dest: "/home/{{ item }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
     depth: 1
     version: master
-    update: yes
+    update: true
   loop: "{{ local_users }}"
 
 - name: Install zsh-syntax-highlighting plugin
@@ -54,5 +54,5 @@
     dest: "/home/{{ item }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
     depth: 1
     version: master
-    update: yes
+    update: true
   loop: "{{ local_users }}"
