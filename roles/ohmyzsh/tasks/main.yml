@@ -27,7 +27,8 @@
 
 - name: Install ohmyzsh
   ansible.builtin.script:
-    cmd: "/home/{{ item }}/install.sh"
+    cmd: roles/ohmyzsh/files/install.sh
+  become_user: "{{ item }}"
   register: ohmyzsh_output
   loop: "{{ local_users }}"
 
