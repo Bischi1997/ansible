@@ -28,6 +28,7 @@
 - name: Install ohmyzsh
   ansible.builtin.script:
     cmd: "/home/{{ item }}/install.sh"
+  register: output
   loop: "{{ local_users }}"
 
 - name: Install PowerLevel10K
