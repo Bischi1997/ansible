@@ -68,15 +68,23 @@
     mode: "0755"
   loop: "{{ local_users }}"
 
-- name: Ensure .p10k.zsh is sourced in .zshrc
-  ansible.builtin.lineinfile:
+- name: Add Powerlevel10k config and instant prompt to .zshrc
+  ansible.builtin.blockinfile:
     path: "/home/{{ item }}/.zshrc"
-    line: '[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh'
     create: yes
-    state: present
     owner: "{{ item }}"
     group: "{{ item }}"
     mode: '0644'
+    block: |
+      # Enable Powerlevel10k instant prompt. Should be near the top of ~/.zshrc.
+      if [[ -r ~/.cache/p10k-instant-prompt-${(%):-%n}.zsh ]]; then
+        source ~/.cache/p10k-instant-prompt-${(%):-%n}.zsh
+      fi
+
+      # Load Powerlevel10k theme config if available
+      [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+    marker: "# {mark} ANSIBLE MANAGED BLOCK: Powerlevel10k"
+    insertbefore: BOF
   loop: "{{ local_users }}"
 
 - name: Install zsh-autosuggestions plugin
