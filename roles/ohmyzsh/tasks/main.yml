@@ -27,7 +27,12 @@
 
 - name: Install ohmyzsh
   ansible.builtin.shell:
-    cmd: yes 'Y' | "/home/{{ item }}/install.sh"
+    set -o pipefail
+    if [ ! -d "/home/{{ item }}/.oh-my-zsh" ]; then
+      yes | /home/{{ item }}/install.sh
+    fi
+  args:
+    executable: /bin/bash
   become: true
   become_user: "{{ item }}"
   loop: "{{ local_users }}"
