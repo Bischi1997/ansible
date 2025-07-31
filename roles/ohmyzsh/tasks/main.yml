@@ -71,7 +71,7 @@
 - name: Add Powerlevel10k config and instant prompt to .zshrc
   ansible.builtin.blockinfile:
     path: "/home/{{ item }}/.zshrc"
-    create: yes
+    create: true
     owner: "{{ item }}"
     group: "{{ item }}"
     mode: '0644'
