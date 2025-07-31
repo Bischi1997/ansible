@@ -1,4 +1,40 @@
 ---
+- name: Installs standard tools
+  ansible.builtin.apt:
+    pkg:
+      - bash-completion
+      - htop
+      - nano
+      - dnsutils
+      - zip
+      - unzip
+      - fail2ban
+      - rsync
+      - tmux
+      - zsh
+  when: ansible_os_family == "Debian"
+
+- name: Enable EPEL Repository on CentOS machines
+  ansible.builtin.dnf:
+    name: epel-release
+    state: latest
+  when: ansible_os_family == "RedHat"
+- name: Installs Standard Tools
+  ansible.builtin.dnf:
+    pkg:
+      - dnf-utils
+      - bash-completion
+      - htop
+      - nano
+      - dnsutils
+      - zip
+      - unzip
+      - fail2ban
+      - rsync
+      - tmux
+      - zsh
+  when: ansible_os_family == "RedHat"
+
 - name: Check for local ansible group and configure it
   ansible.builtin.group:
     name: "{{ item }}"
@@ -9,7 +45,7 @@
   ansible.builtin.user:
     name: "{{ item }}"
     group: "{{ item }}"
-    shell: /bin/zsh
+    shell: /bin/bash
     home: "/home/{{ item }}"
     create_home: true
     state: present
@@ -64,40 +100,6 @@
     state: present
     key: "{{ lookup('env', 'ROOT_USER_PUBKEY') }}"
   when: inventory_hostname not in groups['hetzner']
-
-- name: Installs standard tools
-  ansible.builtin.apt:
-    pkg:
-      - bash-completion
-      - htop
-      - nano
-      - dnsutils
-      - zip
-      - unzip
-      - fail2ban
-      - rsync
-      - tmux
-  when: ansible_os_family == "Debian"
-
-- name: Enable EPEL Repository on CentOS machines
-  ansible.builtin.dnf:
-    name: epel-release
-    state: latest
-  when: ansible_os_family == "RedHat"
-- name: Installs Standard Tools
-  ansible.builtin.dnf:
-    pkg:
-      - dnf-utils
-      - bash-completion
-      - htop
-      - nano
-      - dnsutils
-      - zip
-      - unzip
-      - fail2ban
-      - rsync
-      - tmux
-  when: ansible_os_family == "RedHat"
 
 - name: Remove unnecessary SSH config
   ansible.builtin.file:
