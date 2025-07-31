@@ -59,6 +59,26 @@
     update: true
   loop: "{{ local_users }}"
 
+- name: Add configuration file for PowerLevel10K to the users
+  ansible.builtin.copy:
+    dest: "/home/{{ item }}/.p10k.zsh"
+    src: files/.p10k.zsh
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: "0755"
+  loop: "{{ local_users }}"
+
+- name: Ensure .p10k.zsh is sourced in .zshrc
+  ansible.builtin.lineinfile:
+    path: "/home/{{ item }}/.zshrc"
+    line: '[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh'
+    create: yes
+    state: present
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: '0644'
+  loop: "{{ local_users }}"
+
 - name: Install zsh-autosuggestions plugin
   ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-autosuggestions
