@@ -63,6 +63,7 @@ services:
                 cloud01.home.bischofberger.top:
         updatehosts:
             hosts:
+                netbox01.home.bischofberger.top:
                 dl01.home.bischofberger.top:
                 plx01.home.bischofberger.top:
                 ombi01.home.bischofberger.top:
