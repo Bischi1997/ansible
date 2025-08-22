@@ -9,6 +9,9 @@ home:
     children:
         mgmt:
             hosts:
+                netbox01.home.bischofberger.top:
+                    ansible_host: 10.1.0.5
+                    ansible_user: ansible
                 unifi01.home.bischofberger.top:
                     ansible_host: 10.1.0.20
                     ansible_user: ansible
@@ -19,9 +22,9 @@ home:
                     ansible_user: ansible
         barn:
             hosts:
-                srv01.barn.bischofberger.top:
-                    ansible_host: 10.21.0.10
-                    ansible_user: ansible
+#                srv01.barn.bischofberger.top:
+#                    ansible_host: 10.21.0.10
+#                    ansible_user: ansible
         int:
         ext:
             hosts:
@@ -60,6 +63,7 @@ services:
                 cloud01.home.bischofberger.top:
         updatehosts:
             hosts:
+                netbox01.home.bischofberger.top:
                 dl01.home.bischofberger.top:
                 plx01.home.bischofberger.top:
                 ombi01.home.bischofberger.top:
@@ -67,5 +71,5 @@ services:
                 factorio01.home.bischofberger.top:
                 docker01.home.bischofberger.top:
                 kasm01.home.bischofberger.top:
-                srv01.barn.bischofberger.top:
+#                srv01.barn.bischofberger.top:
                 unifi01.home.bischofberger.top:
